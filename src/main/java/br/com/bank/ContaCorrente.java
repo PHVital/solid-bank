@@ -5,7 +5,7 @@ public class ContaCorrente {
     private double saldo;
     private String titular;
 
-    public ContaCorrente(int id, double saldo, String titular) {
+    public ContaCorrente(int id, String titular) {
         this.id = id;
         this.saldo = 0;
         this.titular = titular;
@@ -13,17 +13,27 @@ public class ContaCorrente {
 
     public void deposito(double valor) {
         if (valor <= 0) {
-            System.out.println("Valor de saque inválido");
-            return;
+            throw new IllegalArgumentException("Valor de depósito inválido");
         }
         this.saldo += valor;
     }
 
     public void saque(double valor) {
         if (saldo < valor) {
-            System.out.println("Saldo insuficiente");
-            return;
+            throw new IllegalArgumentException("Saldo insuficiente");
         }
         this.saldo -= valor;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public String getTitular() {
+        return titular;
     }
 }
