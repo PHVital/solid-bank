@@ -1,6 +1,14 @@
 package br.com.bank;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class ContaCorrente {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private double saldo;
     private String titular;
@@ -10,6 +18,8 @@ public class ContaCorrente {
         this.saldo = 0;
         this.titular = titular;
     }
+
+    public ContaCorrente() {}
 
     public void deposito(double valor) {
         if (valor <= 0) {
