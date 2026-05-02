@@ -20,15 +20,15 @@ public class ContaController {
 
     @PostMapping("/deposito")
     public String realizarDeposito(@RequestParam int id, @RequestParam double valor) {
-        ContaCorrente conta = consultarConta(id);
-        conta.deposito(valor);
-        return "Depósito de R$ " + valor + " realizado com sucesso! Novo saldo: R$ " + conta.getSaldo();
+        contaService.realizarDeposito(id, valor);
+        ContaCorrente contaAtualizada = contaService.consultarConta(id);
+        return "Depósito de R$ " + valor + " realizado com sucesso! Novo saldo: R$ " + contaAtualizada.getSaldo();
     }
 
     @PostMapping("/saque")
     public String realizarSaque(@RequestParam int id, @RequestParam double valor) {
-        ContaCorrente conta = consultarConta(id);
-        conta.saque(valor);
-        return "Saque de R$ " + valor + " realizado com sucesso! Novo saldo: R$ " + conta.getSaldo();
+        contaService.realizarSaque(id, valor);
+        ContaCorrente contaAtualizada = contaService.consultarConta(id);
+        return "Saque de R$ " + valor + " realizado com sucesso! Novo saldo: R$ " + contaAtualizada.getSaldo();
     }
 }
