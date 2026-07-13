@@ -12,7 +12,7 @@ public class CheckingAccount {
     private int id;
     private double balance;
     private String accountHolder;
-    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
     private List<Transaction> transactions = new ArrayList<>();
 
     public CheckingAccount(int id, String accountHolder) {
